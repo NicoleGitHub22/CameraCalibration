@@ -21,6 +21,7 @@ private:
     QString getClientKey(QTcpSocket* client);
     Scanner scanner;
     void showCurrentSH(int l, int m);
+    void showCurrentCalibrationImage(int i);
     void scan();
     void sendToClient(int clientID, QString message);
     void sendToAllClients(QString message);

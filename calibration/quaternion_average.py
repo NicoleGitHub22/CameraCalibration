@@ -30,22 +30,22 @@ def average_quaternions(quaternions):
 
 # List of output files containing quaternions
 output_files = [
-    './quaternion_results_monitor1.txt',
-    './quaternion_results_monitor2.txt',
-    './quaternion_results_monitor3.txt',
-    './quaternion_results_monitor4.txt',
-    './quaternion_results_monitor5.txt',
-    './quaternion_results_monitor6.txt',
+    './Quaternion_Results/quaternion_results_monitor1.txt',
+    './Quaternion_Results/quaternion_results_monitor2.txt',
+    './Quaternion_Results/quaternion_results_monitor3.txt',
+    './Quaternion_Results/quaternion_results_monitor4.txt',
+    './Quaternion_Results/quaternion_results_monitor5.txt',
+    './Quaternion_Results/quaternion_results_monitor6.txt',
 ]
 
 # Corresponding files to save the average quaternions
 average_output_files = [
-    './average_quaternion1.txt',
-    './average_quaternion2.txt',
-    './average_quaternion3.txt',
-    './average_quaternion4.txt',
-    './average_quaternion5.txt',
-    './average_quaternion6.txt',
+    './Average_Quaternion/average_quaternion1.txt',
+    './Average_Quaternion/average_quaternion2.txt',
+    './Average_Quaternion/average_quaternion3.txt',
+    './Average_Quaternion/average_quaternion4.txt',
+    './Average_Quaternion/average_quaternion5.txt',
+    './Average_Quaternion/average_quaternion6.txt',
 ]
 
 # Calculate and save the average quaternion for each monitor

@@ -61,7 +61,14 @@ bool Scanner::scanNextSH()
     if(error != ERROR_OK){
         qDebug() << "Camera capturing failed!";
     }
+    // Additional check for the specific condition to disconnect the camera
+    if(lPtr == 3 && mPtr == 3){
+        capture.CleanUp();
+        qDebug() << "Camera disconnected successfully.";
+    }
     if(-lPtr == l && mPtr == l){
+        
+        qDebug() << -lPtr << "and" << mPtr;
         return true;
     }
 
@@ -75,6 +82,7 @@ bool Scanner::scanNextSH()
 
 
     if(mPtr == lPtr){
+
         lPtr++;
         mPtr = -lPtr;
     }

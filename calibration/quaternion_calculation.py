@@ -63,12 +63,12 @@ def process_matrices_from_file(file_path, output_file_path):
 
 # List of input and output file pairs
 file_pairs = [
-    ('./matrices_monitor1.txt', './quaternion_results_monitor1.txt'),
-    ('./matrices_monitor2.txt', './quaternion_results_monitor2.txt'),
-    ('./matrices_monitor3.txt', './quaternion_results_monitor3.txt'),
-    ('./matrices_monitor4.txt', './quaternion_results_monitor4.txt'),
-    ('./matrices_monitor5.txt', './quaternion_results_monitor5.txt'),
-    ('./matrices_monitor6.txt', './quaternion_results_monitor6.txt'),
+    ('./Matrices_Monitors/matrices_monitor1.txt', './Quaternion_Results/quaternion_results_monitor1.txt'),
+    ('./Matrices_Monitors/matrices_monitor2.txt', './Quaternion_Results/quaternion_results_monitor2.txt'),
+    ('./Matrices_Monitors/matrices_monitor3.txt', './Quaternion_Results/quaternion_results_monitor3.txt'),
+    ('./Matrices_Monitors/matrices_monitor4.txt', './Quaternion_Results/quaternion_results_monitor4.txt'),
+    ('./Matrices_Monitors/matrices_monitor5.txt', './Quaternion_Results/quaternion_results_monitor5.txt'),
+    ('./Matrices_Monitors/matrices_monitor6.txt', './Quaternion_Results/quaternion_results_monitor6.txt'),
 ]
 
 for input_file, output_file in file_pairs:
