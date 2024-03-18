@@ -115,7 +115,7 @@ int CameraCapture::CaptureCamera(int l, int m){
     return 0;
 }
 
-int CameraCapture::CaptureCameraCal(i){
+int CameraCapture::CaptureCameraCal(int i){
 
     Error error;
 

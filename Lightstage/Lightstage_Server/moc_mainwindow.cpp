@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[25];
-    char stringdata0[359];
+    QByteArrayData data[26];
+    char stringdata0[371];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,12 +51,13 @@ QT_MOC_LITERAL(15, 235, 5), // "error"
 QT_MOC_LITERAL(16, 241, 12), // "onCalibrated"
 QT_MOC_LITERAL(17, 254, 9), // "onScanned"
 QT_MOC_LITERAL(18, 264, 19), // "onCalibrationFailed"
-QT_MOC_LITERAL(19, 284, 12), // "onScanFailed"
-QT_MOC_LITERAL(20, 297, 8), // "errorMsg"
-QT_MOC_LITERAL(21, 306, 15), // "onNewConnection"
-QT_MOC_LITERAL(22, 322, 12), // "onDisconnect"
-QT_MOC_LITERAL(23, 335, 14), // "onScanProgress"
-QT_MOC_LITERAL(24, 350, 8) // "progress"
+QT_MOC_LITERAL(19, 284, 11), // "errorMsgCal"
+QT_MOC_LITERAL(20, 296, 12), // "onScanFailed"
+QT_MOC_LITERAL(21, 309, 8), // "errorMsg"
+QT_MOC_LITERAL(22, 318, 15), // "onNewConnection"
+QT_MOC_LITERAL(23, 334, 12), // "onDisconnect"
+QT_MOC_LITERAL(24, 347, 14), // "onScanProgress"
+QT_MOC_LITERAL(25, 362, 8) // "progress"
 
     },
     "MainWindow\0calibrate\0\0scan\0levelOfDetail\0"
@@ -66,9 +67,9 @@ QT_MOC_LITERAL(24, 350, 8) // "progress"
     "on_delayClient1spinBox_editingFinished\0"
     "on_stop_button_clicked\0onSimpleStateUpdate\0"
     "state\0error\0onCalibrated\0onScanned\0"
-    "onCalibrationFailed\0onScanFailed\0"
-    "errorMsg\0onNewConnection\0onDisconnect\0"
-    "onScanProgress\0progress"
+    "onCalibrationFailed\0errorMsgCal\0"
+    "onScanFailed\0errorMsg\0onNewConnection\0"
+    "onDisconnect\0onScanProgress\0progress"
 };
 #undef QT_MOC_LITERAL
 
@@ -100,11 +101,11 @@ static const uint qt_meta_data_MainWindow[] = {
       13,    2,  114,    2, 0x0a /* Public */,
       16,    0,  119,    2, 0x0a /* Public */,
       17,    0,  120,    2, 0x0a /* Public */,
-      18,    0,  121,    2, 0x0a /* Public */,
-      19,    1,  122,    2, 0x0a /* Public */,
-      21,    1,  125,    2, 0x0a /* Public */,
-      22,    1,  128,    2, 0x0a /* Public */,
-      23,    1,  131,    2, 0x0a /* Public */,
+      18,    1,  121,    2, 0x0a /* Public */,
+      20,    1,  124,    2, 0x0a /* Public */,
+      22,    1,  127,    2, 0x0a /* Public */,
+      23,    1,  130,    2, 0x0a /* Public */,
+      24,    1,  133,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -121,11 +122,11 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::Bool,   14,   15,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   20,
+    QMetaType::Void, QMetaType::QString,   19,
+    QMetaType::Void, QMetaType::QString,   21,
     QMetaType::Void, QMetaType::Int,    7,
     QMetaType::Void, QMetaType::Int,    7,
-    QMetaType::Void, QMetaType::Int,   24,
+    QMetaType::Void, QMetaType::Int,   25,
 
        0        // eod
 };
@@ -148,7 +149,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 9: _t->onSimpleStateUpdate((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         case 10: _t->onCalibrated(); break;
         case 11: _t->onScanned(); break;
-        case 12: _t->onCalibrationFailed(); break;
+        case 12: _t->onCalibrationFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 13: _t->onScanFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 14: _t->onNewConnection((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 15: _t->onDisconnect((*reinterpret_cast< int(*)>(_a[1]))); break;

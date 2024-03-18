@@ -26,7 +26,7 @@ public slots:
     void onSimpleStateUpdate(QString state, bool error);
     void onCalibrated();
     void onScanned();
-    void onCalibrationFailed();
+    void onCalibrationFailed(QString errorMsgCal);
     void onScanFailed(QString errorMsg);
     void onNewConnection(int clientID);
     void onDisconnect(int clientID);

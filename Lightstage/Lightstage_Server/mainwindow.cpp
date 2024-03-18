@@ -67,9 +67,9 @@ void MainWindow::onScanned()
     ui->scanBtn->setEnabled(true);
 }
 
-void MainWindow::onCalibrationFailed()
+void MainWindow::onCalibrationFailed(QString errorMsgCal)
 {
-    setMainStatus(errorMsg, true);
+    setMainStatus(errorMsgCal, true);
     ui->calBtn->setEnabled(true);
 }
 

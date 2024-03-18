@@ -55,16 +55,15 @@ int Scanner::setUpCal()
     int error = capture.SetUp(); 
     if(error != ERROR_OK){
         qDebug() << "Capture setup failed!";
-        return;
     }
 
-    // Start the capture process
-     error = capture.StartCapture(); 
-        if(error != ERROR_OK){
-        qDebug() << "Starting capture failed!";
-    } else {
-        qDebug() << "Capture started successfully for calibration.";
-    }
+    // // Start the capture process
+    //  error = capture.StartCapture(); 
+    //     if(error != ERROR_OK){
+    //     qDebug() << "Starting capture failed!";
+    // } else {
+    //     qDebug() << "Capture started successfully for calibration.";
+    // }
     return 0;
 }
 

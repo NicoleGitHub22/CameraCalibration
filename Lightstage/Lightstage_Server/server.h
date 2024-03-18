@@ -23,6 +23,7 @@ private:
     void showCurrentSH(int l, int m);
     void showCurrentCalibrationImage(int i);
     void scan();
+    void calibrate();
     void sendToClient(int clientID, QString message);
     void sendToAllClients(QString message);
 
@@ -35,6 +36,7 @@ signals:
     void scanned();
     void scanProgress(int progress);
     void scanFailed(QString errorMsg);
+    void calFailed(QString errorMsgCal);
     void simpleStateUpdate(QString state, bool error);
 
 public slots:

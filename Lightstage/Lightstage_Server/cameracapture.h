@@ -14,6 +14,7 @@ public:
     int printInfo();
     int SetUp();
     int CaptureCamera(int l, int m);
+    int CaptureCameraCal(int i);
     int CleanUp();
 private:
     void PrintBuildInfo();
