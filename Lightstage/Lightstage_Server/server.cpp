@@ -82,19 +82,10 @@ void Server::onDisconnect(){
 
 void Server::onCalibrate()
 {
-    ///find the sphere with a circle recognition algorithm
-    std::vector<float> position2D{0,0};
-    float radius = 3.0;
-    //circleHoughTransform(position2D, radius);
-
-    ///calculate the 3D position of the sphere relative to the camera. dont forget the intrinsic camera parameters!
-    ///for every pixel:
-    ///     find reflection on the sphere(algorithm which detects the brightest spot within the previously detected circle)
-    ///     calculate the incoming light direction of the pixel using the sphere and simple geometry
-    ///         (for this, assume that the pixels are infinitely far away(easy, but incorrect), or guess the distance
-    ///             (a bit more tricky, better result))
-    ///end loop
-
+    int error = scanner.setUpCal();
+    if(error == ERROR_OK){
+        emit simpleStateUpdate("Taking images...", false);
+    }
     sendToAllClients(QString("calibrate"));
 }
 
@@ -104,6 +95,17 @@ void Server::onScan(int maxLevelOfDetail)
     if(error == ERROR_OK){
         emit simpleStateUpdate("Scanning...", false);
         showCurrentSH(0,0);
+    }
+}
+
+void Server::calibrate(){
+    bool finishedAllPhotos = scanner.scanNextCal();
+    if(finishedAllPhotos){
+        scanner.cleanUp();
+        emit calibrated();
+    }
+    else{
+        showCurrentCalibrationImage();
     }
 }
 
@@ -126,6 +128,12 @@ void Server::showCurrentSH(int l, int m)
 {
     QString scan_file = "scan:SPH-" + QString::number(l) + "-" + QString::number(m);
     sendToAllClients(scan_file);
+}
+
+void Server::showCurrentCalibrationImage(int i)
+{
+    QString cal_file = "cal:cal-" + QString::number(i);
+    sendToAllClients(cal_file);
 }
 
 void Server::onClientDelayChanged(int delay, int clientID)

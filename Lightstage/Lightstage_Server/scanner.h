@@ -8,8 +8,10 @@ class Scanner
 public:
     Scanner();
     int setUp(int maxLevelOfDetail);
+    int setUpCal();
     int cleanUp();
     bool scanNextSH();
+    bool scanNextCal();
     int getProgess();
     int getCurrentL();
     int getCurrentM();

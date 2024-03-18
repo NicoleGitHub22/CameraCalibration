@@ -27,8 +27,8 @@ int Scanner::setUp(int maxLevelOfDetail)
             bool missingFile = true;
             for(int x = 1; x <= 6; x++){
                 struct stat buffer;
-                std::string file = "/home/bretznic/Documents/Lightstage/SphericalHarmonics/SPH-"+ std::to_string(l) + "-" + std::to_string(m) + "-"+ std::to_string(x) + ".bmp";
-                std::string file_inv = "/home/bretznic/Documents/Lightstage/SphericalHarmonics/SPH--"+ std::to_string(l) + "-" + std::to_string(m) + "-"+ std::to_string(x) + ".bmp";
+                std::string file = "../SphericalHarmonics/SPH-"+ std::to_string(l) + "-" + std::to_string(m) + "-"+ std::to_string(x) + ".bmp";
+                std::string file_inv = "../SphericalHarmonics/SPH--"+ std::to_string(l) + "-" + std::to_string(m) + "-"+ std::to_string(x) + ".bmp";
                 bool fileReady = stat(file.c_str(), &buffer) == 0 || stat(file_inv.c_str(), &buffer) == 0;
                 missingFile = missingFile || !fileReady;
             }
@@ -49,9 +49,45 @@ int Scanner::setUp(int maxLevelOfDetail)
     return 0;
 }
 
+int Scanner::setUpCal()
+{
+    
+    int error = capture.SetUp(); 
+    if(error != ERROR_OK){
+        qDebug() << "Capture setup failed!";
+        return;
+    }
+
+    // Start the capture process
+     error = capture.StartCapture(); 
+        if(error != ERROR_OK){
+        qDebug() << "Starting capture failed!";
+    } else {
+        qDebug() << "Capture started successfully for calibration.";
+    }
+    return 0;
+}
+
 int Scanner::cleanUp()
 {
     capture.CleanUp();
+}
+
+bool Scanner::scanNextCal()
+{
+    qDebug() << "Taking image " << i;
+    int error = capture.CaptureCameraCal(i);
+    if(error != ERROR_OK){
+        qDebug() << "Camera capturing failed!";
+    }
+    if(i == 18){
+        capture.CleanUp();
+        qDebug() << "Camera disconnected successfully.";
+        return true;
+    }
+    else
+        i++;
+        return false;
 }
 
 bool Scanner::scanNextSH()

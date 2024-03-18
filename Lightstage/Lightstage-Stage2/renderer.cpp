@@ -162,7 +162,7 @@ void Renderer::onRender()
             auto start = high_resolution_clock::now();
     ImageProcessor imageProcessor;
     //where the scans are located:
-    QString filepath = "/home/bretznic/Documents/Lightstage/Build/Server/FINAL_DIFF2 (copy)/";
+    QString filepath = "../Build/Server/FINAL_DIFF2 (copy)/";
     QImage n, specular, mixed, diff, rndr;
 	//testrenders
     QImage graceCatRdr;

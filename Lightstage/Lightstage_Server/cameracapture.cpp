@@ -115,6 +115,61 @@ int CameraCapture::CaptureCamera(int l, int m){
     return 0;
 }
 
+int CameraCapture::CaptureCameraCal(i){
+
+    Error error;
+
+    error = cam.StartCapture();
+    if (error != PGRERROR_OK)
+    {
+        PrintError(error);
+        return -1;
+    }
+
+    Image rawImage;
+    // Retrieve an image
+    error = cam.RetrieveBuffer(&rawImage);
+    if (error != PGRERROR_OK)
+    {
+        PrintError(error);
+        return -1;
+    }
+
+    // Create a converted image
+    Image convertedImage;
+
+    // Convert the raw image
+    error = rawImage.Convert(PIXEL_FORMAT_BGRU, &convertedImage);
+    if (error != PGRERROR_OK)
+    {
+        PrintError(error);
+        return -1;
+    }
+
+    // Create a unique filename
+
+    ostringstream filename;
+    filename << i << ".ppm";
+
+    // Save the image. If a file format is not passed in, then the file
+    // extension is parsed to attempt to determine the file format.
+    error = convertedImage.Save(filename.str().c_str());
+    if (error != PGRERROR_OK)
+    {
+        PrintError(error);
+        return -1;
+    }
+
+    // Stop capturing images
+    error = cam.StopCapture();
+    if (error != PGRERROR_OK)
+    {
+        PrintError(error);
+        return -1;
+    }
+    return 0;
+}
+
 int CameraCapture::SetUpCamera(PGRGuid guid)
 {
     Error error;

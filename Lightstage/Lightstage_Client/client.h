@@ -26,7 +26,7 @@ private:
     int delay;
     void sendToServer(QString message);
     void connectToServer(const QString &hostName, const qint16 &port);
-    void calibrate();
+    int calibrate();
     int scan();
     void showPixmaps(QPixmap pixmap[]);
     void showPixmap(QPixmap& pixmap);

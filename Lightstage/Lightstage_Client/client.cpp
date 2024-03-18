@@ -23,7 +23,7 @@ Client::Client(QObject *parent, int screenShift, std::string clientID) : QObject
 
     connectToServer("localhost", 50100);
 
-    imagePath = "/home/bretznic/Documents/Lightstage/SphericalHarmonics/";
+    imagePath = "../SphericalHarmonics/";
 
     /* IMPORTANT: make sure the monitors are oriented like this in the nvidia x server settings:
      *
@@ -60,11 +60,17 @@ void Client::connectToServer(const QString &hostName, const qint16 &port)
     socket.flush();
 }
 
-///TODO: implement
-void Client::calibrate()
+int Client::calibrate()
 {
-    state = CALIBRATING;
-    state = IDLE;
+    QString calibrationImagePath = "/home/bretznic/Documents/GitHub/CameraCalibration/calibration/Camera_calibration/Calibration_Images/";
+    scanBuffer[0].load(calibrationImagePath + "CalibrationImage-" + QString::number(1 + 3*std::stoi(id)) + ".png");
+    scanBuffer[1].load(calibrationImagePath + "CalibrationImage-" + QString::number(2 + 3*std::stoi(id)) + ".png");
+    scanBuffer[2].load(calibrationImagePath + "CalibrationImage-" + QString::number(3 + 3*std::stoi(id)) + ".png");
+    showPixmaps(scanBuffer);
+    usleep(delay*3000);
+    sendToServer("/s:calibrated");
+    qDebug() << "/s:calibrated";
+    return 0;
 }
 
 int Client::scan()
@@ -123,9 +129,10 @@ void Client::onReadyRead()
         showPixmap(standby);
     }
     else if(prefix == "calibrate"){
+        state = CALIBRATING;
+        std::string file = message.substr(message.find(delimiter) + 1, message.length());
+        loadImagesIntoBuffer(QString::fromUtf8(file.c_str()));
         calibrate();
-        QByteArray message = QByteArrayLiteral("/s:calibrated");
-        sendToServer("/s:calibrated");
     }
     else if(prefix == "delay"){
         delay = std::stoi(message.substr(message.find(delimiter) + 1, message.length()));

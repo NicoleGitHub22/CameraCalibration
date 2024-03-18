@@ -18,8 +18,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_calBtn_clicked()
 {
+    int delayClient1 = ui->delayClient1spinBox->value();
+    int delayClient0 = ui->delayClient0spinBox->value();
     calibrate();
     setMainStatus("Calibrating...", false);
+
 }
 
 void MainWindow::on_scanBtn_clicked()
@@ -56,6 +59,7 @@ void MainWindow::onSimpleStateUpdate(QString state, bool error)
 
 void MainWindow::onCalibrated()
 {
+    ui->calBtn->setEnabled(true);
 }
 
 void MainWindow::onScanned()
@@ -65,6 +69,8 @@ void MainWindow::onScanned()
 
 void MainWindow::onCalibrationFailed()
 {
+    setMainStatus(errorMsg, true);
+    ui->calBtn->setEnabled(true);
 }
 
 void MainWindow::onScanFailed(QString errorMsg)
@@ -107,6 +113,6 @@ void MainWindow::setMainStatus(QString message, bool warning)
 void MainWindow::on_stop_button_clicked()
 {
     // Execute the stop_lightstage.sh script
-        QProcess::execute("/bin/bash", {"/home/bretznic/Documents/Lightstage/Build/Server/stop_lightstage.sh"});
+        QProcess::execute("/bin/bash", {"../Build/Server/stop_lightstage.sh"});
 }
 

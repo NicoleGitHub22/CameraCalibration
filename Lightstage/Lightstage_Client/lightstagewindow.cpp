@@ -1,5 +1,5 @@
 //=============================================================================
-// Displays an sh image on a lightstage-monitor.
+// Displays an sh or calibration image on a lightstage-monitor.
 //=============================================================================
 
 #include "lightstagewindow.h"
@@ -11,7 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-QString IMAGE_PATH = "/home/bretznic/Documents/Lightstage/SphericalHarmonics/";
+QString IMAGE_PATH = "../SphericalHarmonics/";
+QString CALIBRATION_PATH = "";
 
 
 LightstageWindow::LightstageWindow(QWidget *parent) : QWidget(parent)

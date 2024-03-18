@@ -117,7 +117,7 @@ void SphericalHarmonics::createSphericalHarmonics(int l, int m)
     const int SCREEN_HEIGHT = 1200;
     QImage* images[6];
     QImage* images_INVERSE[6];
-    QString imagePath = "/home/bretznic/Documents/Lightstage/SphericalHarmonics/";
+    QString imagePath = "../SphericalHarmonics/";
 
     for(int i = 0; i < 6; i++){
         images[i] = new QImage(SCREEN_WIDTH, SCREEN_HEIGHT, QImage::Format_Grayscale8);
@@ -237,7 +237,7 @@ void SphericalHarmonics::createGraceCathedralSphericalHarmonics()
     const int SCREEN_HEIGHT = 1200;
     QImage* images[6];
    // QImage* images_[6];// = new QImage(SCREEN_WIDTH, SCREEN_HEIGHT, QImage::Format_Grayscale8);
-    QString imagePath = "/home/bretznic/Documents/Lightstage/SphericalHarmonics/";
+    QString imagePath = "../SphericalHarmonics/";
 
     for(int i = 0; i < 6; i++){
         images[i] = new QImage(SCREEN_WIDTH, SCREEN_HEIGHT, QImage::Format_RGB32);
