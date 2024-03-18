@@ -135,4 +135,6 @@ int Scanner::getProgess()
 
 int Scanner::getCurrentL(){    return lPtr;    }
 
+int Scanner::getCurrentI(){    return i;    }
+
 int Scanner::getCurrentM(){    return mPtr;    }

@@ -18,6 +18,7 @@ public:
 private:
     LightstageWindow lightstageWindows[3];
     QString imagePath;
+    QString calibrationImagePath;
     QTcpSocket socket;
     State state;
     std::string id;

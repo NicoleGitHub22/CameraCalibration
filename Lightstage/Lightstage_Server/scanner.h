@@ -15,8 +15,11 @@ public:
     int getProgess();
     int getCurrentL();
     int getCurrentM();
+    int getCurrentI();
+    
 private:
     const int ERROR_OK = 0;
+    int i;
     int lPtr;
     int mPtr;
     int l;

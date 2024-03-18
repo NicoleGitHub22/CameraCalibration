@@ -105,7 +105,7 @@ void Server::calibrate(){
         emit calibrated();
     }
     else{
-        showCurrentCalibrationImage();
+        showCurrentCalibrationImage(scanner.GetCurrentI());
     }
 }
 
