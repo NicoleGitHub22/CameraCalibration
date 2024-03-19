@@ -56,18 +56,17 @@ int Scanner::setUpCal()
     if(error != ERROR_OK){
         qDebug() << "Capture setup failed!";
     }
+    
     for(int j = 1; j<=3; j++){
        for(int i = 0; i<=8; i++){
         struct stat buffer;
                 std::string file = "../../calibration/Camera_calibration/Calibration_Images/CAL-"+ std::to_string(i) + "-" + std::to_string(j)+ ".png";
-                bool fileReady = stat(file.c_str(), &buffer) == 0 || stat(file_inv.c_str(), &buffer) == 0;
-                missingFile = missingFile || !fileReady;
+                bool fileReady = stat(file.c_str(), &buffer) == 0;
         }
      }
-            qDebug()<< missingFile;
-            if(missingFile)
-                qDebug() << "Missing calibration file, please redownload the calibration files";
-    }
+            // qDebug()<< missingFile;
+            // if(missingFile)
+            //     qDebug() << "Missing calibration file, please redownload the calibration files";
 
     // // Start the capture process
     //  error = capture.StartCapture(); 
@@ -88,11 +87,6 @@ int Scanner::cleanUp()
 bool Scanner::scanNextCal()
 {
     qDebug() << "scanNextCal 1";
-    // Check if the camera is still connected before attempting to capture
-    if(!capture.isConnected()) {
-        qDebug() << "Camera is not connected.";
-        return false; // Or handle the reconnection logic here
-    }
 
     int error = capture.CaptureCameraCal(i);
     if(error != ERROR_OK){
@@ -111,12 +105,6 @@ bool Scanner::scanNextCal()
 
 bool Scanner::scanNextSH()
 {
-    // Check if the camera is still connected before attempting to capture
-    if(!capture.isConnected()) {
-        qDebug() << "Camera is not connected.";
-        return false; 
-    }
-
     qDebug() << lPtr << mPtr;
     int error = capture.CaptureCamera(lPtr, mPtr);
     if(error != ERROR_OK){

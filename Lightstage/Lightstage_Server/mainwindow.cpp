@@ -23,12 +23,13 @@ void MainWindow::on_calBtn_clicked()
     int delayClient0 = ui->delayClient0spinBox->value();
     calibrate();
     setMainStatus("Calibrating...", false);
-    ui->cal_progressBar->setValue(0);
+    ui->progressBar->setValue(0);
     qDebug() << "calBtn_clicked 2";
 }
 
 void MainWindow::on_scanBtn_clicked()
 {
+    qDebug() << "ScanBtn_clicked";
     int levelOfDetail = ui->LoDspinBox->value();
     int delayClient1 = ui->delayClient1spinBox->value();
     int delayClient0 = ui->delayClient0spinBox->value();
@@ -109,7 +110,7 @@ void MainWindow::onScanProgress(int progress)
 void MainWindow::onCalProgress(int progress)
 {
     qDebug() << "onCalProgress 1";
-    ui->cal_progressBar->setValue(progress);
+    ui->progressBar->setValue(progress);
     qDebug() << "onCalProgress 2";
 }
 
