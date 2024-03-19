@@ -39,6 +39,7 @@ void MainWindow::on_scanBtn_clicked()
     if(ui->client1ConnectedCB->isChecked() || ui->client2ConnectedCB->isChecked()){
        // ui->scanBtn->setEnabled(false);
     }
+    qDebug() << "ScanBtn_clicked 2";
 }
 
 void MainWindow::on_delayClient0spinBox_editingFinished()
@@ -69,7 +70,9 @@ void MainWindow::onCalibrated()
 
 void MainWindow::onScanned()
 {
+    qDebug() << "onScanned 1";
     ui->scanBtn->setEnabled(true);
+    qDebug() << "onScanned 2";
 }
 
 void MainWindow::onCalibrationFailed(QString errorMsgCal)
@@ -82,16 +85,20 @@ void MainWindow::onCalibrationFailed(QString errorMsgCal)
 
 void MainWindow::onScanFailed(QString errorMsg)
 {
-     setMainStatus(errorMsg, true);
+    qDebug() << "onScanFailed 1";
+    setMainStatus(errorMsg, true);
     ui->scanBtn->setEnabled(true);
+    qDebug() << "onScanFailed 2";
 }
 
 void MainWindow::onNewConnection(int clientID)
 {
+    qDebug() << "onNewConnection 1";
     if(clientID == 0)
         ui->client1ConnectedCB->setChecked(true);
     else if(clientID == 1)
         ui->client2ConnectedCB->setChecked(true);
+    qDebug() << "onNewConnection 2";
 }
 
 void MainWindow::onDisconnect(int clientID)
@@ -116,12 +123,14 @@ void MainWindow::onCalProgress(int progress)
 
 void MainWindow::setMainStatus(QString message, bool warning)
 {
+    qDebug() << "setMainStatus 1";
     if(warning)
         ui->statusLbl->setStyleSheet("QLabel { color : red; }");
     else
         ui->statusLbl->setStyleSheet("QLabel { color : black; }");
 
     ui->statusLbl->setText("Status: " + message);
+    qDebug() << "setMainStatus 2";a
 }
 
 void MainWindow::on_stop_button_clicked()

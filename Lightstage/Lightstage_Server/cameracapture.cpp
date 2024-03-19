@@ -59,7 +59,7 @@ void CameraCapture::PrintCameraInfo(CameraInfo *pCamInfo)
 void CameraCapture::PrintError(Error error) { error.PrintErrorTrace(); }
 
 int CameraCapture::CaptureCamera(int l, int m){
-
+    qDebug() << "CaptureCamera 1";
     Error error;
 
     error = cam.StartCapture();
@@ -174,6 +174,7 @@ int CameraCapture::CaptureCameraCal(int i){
 
 int CameraCapture::SetUpCamera(PGRGuid guid)
 {
+    qDebug() << "SetUpCamera 1";
     Error error;
 
     // Connect to a camera
@@ -228,6 +229,7 @@ int CameraCapture::SetUpCamera(PGRGuid guid)
 }
 
 int CameraCapture::CleanUp(){
+    qDebug() << "CleanUp 1";
     Error error;
 
     // Disconnect the camera
@@ -277,6 +279,7 @@ int CameraCapture::printInfo()
 
 int CameraCapture::SetUp()
 {
+    qDebug() << "SetUp 1";
     Error error;
 
     // Since this application saves images in the current folder

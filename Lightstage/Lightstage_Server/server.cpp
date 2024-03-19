@@ -24,6 +24,7 @@ Server::Server(QObject *parent) : QObject(parent)
 }
 
 void Server::onNewConnection(){
+    qDebug() << "onNewConnection 1";
     const auto cSocket = server.nextPendingConnection();
 
     if(cSocket == nullptr)
@@ -39,6 +40,7 @@ void Server::onNewConnection(){
 }
 
 void Server::onReadyRead(){
+    qDebug() << "onReadyRead 1";
     const auto cSocket = qobject_cast<QTcpSocket*>(sender());
 
     if(cSocket == nullptr)
@@ -70,6 +72,7 @@ void Server::onReadyRead(){
 }
 
 void Server::onDisconnect(){
+    qDebug() << "onDisconnect 1";
     const auto client = qobject_cast<QTcpSocket*>(sender());
 
     if(client == nullptr)
@@ -93,11 +96,13 @@ void Server::onCalibrate()
 
 void Server::onScan(int maxLevelOfDetail)
 {
+    qDebug() << "onScan 1";
     int error = scanner.setUp(maxLevelOfDetail);
     if(error == ERROR_OK){
         emit simpleStateUpdate("Scanning...", false);
         showCurrentSH(0,0);
     }
+    qDebug() << "onScan 2";
 }
 
 void Server::calibrate(){
@@ -116,7 +121,8 @@ void Server::calibrate(){
     qDebug() << "calibrate 2";
 }
 
-void Server::scan(){
+void Server::scan(){   
+    qDebug() << "scan 1";
     bool finishedAllScans = scanner.scanNextSH();
 
     emit scanProgress(scanner.getProgess());
@@ -129,12 +135,15 @@ void Server::scan(){
     }
     else
         showCurrentSH(scanner.getCurrentL(), scanner.getCurrentM());
+    qDebug() << "scan 2";
 }
 
 void Server::showCurrentSH(int l, int m)
 {
+    qDebug() << "showCurrentSH 1";
     QString scan_file = "scan:SPH-" + QString::number(l) + "-" + QString::number(m);
     sendToAllClients(scan_file);
+    qDebug() << "showCurrentSH 2";
 }
 
 void Server::showCurrentCalibrationImage(int i)

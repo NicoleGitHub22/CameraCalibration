@@ -76,15 +76,18 @@ int Client::calibrate()
 
 int Client::scan()
 {
+    qDebug() << "scan 1";
     showPixmaps(scanBuffer);
     usleep(delay*3000);
     sendToServer("/s:scanned");
     qDebug() << "/s:scanned";
     return 0;
+    qDebug() << "scan 2";
 }
 
 void Client::showPixmaps(QPixmap pixmap[])
 {
+    qDebug() << "showPixmaps 1";
     for(int n=0; n < 3; n++){
         lightstageWindows[n].showPixmap(pixmap[n]);
     }
@@ -92,13 +95,15 @@ void Client::showPixmaps(QPixmap pixmap[])
 
 void Client::showPixmap(QPixmap &pixmap)
 {
+    qDebug() << "showPixmap 1-2";
     for(int n=0; n < 3; n++){
         lightstageWindows[n].showPixmap(pixmap);
     }
 }
 
 void Client::loadImagesIntoBuffer(QString file)
-{
+{   
+    qDebug() << "loadImagesIntoBuffer 1";
     qDebug() << file;
     scanBuffer[0].load(imagePath + file + "-" + QString::number(1 + 3*std::stoi(id)) + ".bmp");
     scanBuffer[1].load(imagePath + file + "-" + QString::number(2 + 3*std::stoi(id)) + ".bmp");
@@ -106,12 +111,13 @@ void Client::loadImagesIntoBuffer(QString file)
 }
 
 void Client::onConnected()
-{
+{   
     qDebug() << "Connected to server";
 }
 
 void Client::onReadyRead()
-{
+{   
+    qDebug() << "onReadyRead 1";
     const auto message = socket.readAll().toStdString();
 
     std::string delimiter = ":";
