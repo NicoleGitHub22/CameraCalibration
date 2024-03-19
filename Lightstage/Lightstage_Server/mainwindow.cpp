@@ -18,11 +18,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_calBtn_clicked()
 {
+    qDebug() << "calBtn_clicked 1";
     int delayClient1 = ui->delayClient1spinBox->value();
     int delayClient0 = ui->delayClient0spinBox->value();
     calibrate();
     setMainStatus("Calibrating...", false);
-
+    ui->cal_progressBar->setValue(0);
+    qDebug() << "calBtn_clicked 2";
 }
 
 void MainWindow::on_scanBtn_clicked()
@@ -59,7 +61,9 @@ void MainWindow::onSimpleStateUpdate(QString state, bool error)
 
 void MainWindow::onCalibrated()
 {
+    qDebug() << "onCalibrated 1";
     ui->calBtn->setEnabled(true);
+    qDebug() << "onCalibrated 2";
 }
 
 void MainWindow::onScanned()
@@ -69,8 +73,10 @@ void MainWindow::onScanned()
 
 void MainWindow::onCalibrationFailed(QString errorMsgCal)
 {
+    qDebug() << "onCalibrationFailed 1";
     setMainStatus(errorMsgCal, true);
     ui->calBtn->setEnabled(true);
+    qDebug() << "onCalibrationFailed 2";
 }
 
 void MainWindow::onScanFailed(QString errorMsg)
@@ -98,6 +104,13 @@ void MainWindow::onDisconnect(int clientID)
 void MainWindow::onScanProgress(int progress)
 {
     ui->scan_progressBar->setValue(progress);
+}
+
+void MainWindow::onCalProgress(int progress)
+{
+    qDebug() << "onCalProgress 1";
+    ui->cal_progressBar->setValue(progress);
+    qDebug() << "onCalProgress 2";
 }
 
 void MainWindow::setMainStatus(QString message, bool warning)

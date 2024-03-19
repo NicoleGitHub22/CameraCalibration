@@ -117,6 +117,7 @@ int CameraCapture::CaptureCamera(int l, int m){
 
 int CameraCapture::CaptureCameraCal(int i){
 
+    qDebug() << "CaptureCameraCal 1";
     Error error;
 
     error = cam.StartCapture();
@@ -167,6 +168,7 @@ int CameraCapture::CaptureCameraCal(int i){
         PrintError(error);
         return -1;
     }
+    qDebug() << "CaptureCameraCal 2";
     return 0;
 }
 

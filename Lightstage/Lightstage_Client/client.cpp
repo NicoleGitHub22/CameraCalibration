@@ -62,7 +62,8 @@ void Client::connectToServer(const QString &hostName, const qint16 &port)
 
 int Client::calibrate()
 {
-    QString calibrationImagePath = "/home/bretznic/Documents/GitHub/CameraCalibration/calibration/Camera_calibration/Calibration_Images/";
+    qDebug() << "calibrate 1";
+    QString calibrationImagePath = "../../calibration/Camera_calibration/Calibration_Images/";
     scanBuffer[0].load(calibrationImagePath + "CalibrationImage-" + QString::number(1 + 3*std::stoi(id)) + ".png");
     scanBuffer[1].load(calibrationImagePath + "CalibrationImage-" + QString::number(2 + 3*std::stoi(id)) + ".png");
     scanBuffer[2].load(calibrationImagePath + "CalibrationImage-" + QString::number(3 + 3*std::stoi(id)) + ".png");

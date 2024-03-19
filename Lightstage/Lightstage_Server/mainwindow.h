@@ -31,6 +31,7 @@ public slots:
     void onNewConnection(int clientID);
     void onDisconnect(int clientID);
     void onScanProgress(int progress);
+    void onCalProgress(int progress);
 
 private:
     Ui::MainWindow *ui;

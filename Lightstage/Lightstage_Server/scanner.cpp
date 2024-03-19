@@ -51,10 +51,22 @@ int Scanner::setUp(int maxLevelOfDetail)
 
 int Scanner::setUpCal()
 {
-    
+    qDebug() << "setUpCal 1";
     int error = capture.SetUp(); 
     if(error != ERROR_OK){
         qDebug() << "Capture setup failed!";
+    }
+    for(int j = 1; j<=3; j++){
+       for(int i = 0; i<=8; i++){
+        struct stat buffer;
+                std::string file = "../../calibration/Camera_calibration/Calibration_Images/CAL-"+ std::to_string(i) + "-" + std::to_string(j)+ ".png";
+                bool fileReady = stat(file.c_str(), &buffer) == 0 || stat(file_inv.c_str(), &buffer) == 0;
+                missingFile = missingFile || !fileReady;
+        }
+     }
+            qDebug()<< missingFile;
+            if(missingFile)
+                qDebug() << "Missing calibration file, please redownload the calibration files";
     }
 
     // // Start the capture process
@@ -65,6 +77,7 @@ int Scanner::setUpCal()
     //     qDebug() << "Capture started successfully for calibration.";
     // }
     return 0;
+    qDebug() << "setUpCal 2";
 }
 
 int Scanner::cleanUp()
@@ -74,35 +87,44 @@ int Scanner::cleanUp()
 
 bool Scanner::scanNextCal()
 {
-    qDebug() << "Taking image " << i;
+    qDebug() << "scanNextCal 1";
+    // Check if the camera is still connected before attempting to capture
+    if(!capture.isConnected()) {
+        qDebug() << "Camera is not connected.";
+        return false; // Or handle the reconnection logic here
+    }
+
     int error = capture.CaptureCameraCal(i);
     if(error != ERROR_OK){
         qDebug() << "Camera capturing failed!";
     }
-    if(i == 18){
+    if(i == 9){
         capture.CleanUp();
         qDebug() << "Camera disconnected successfully.";
         return true;
     }
     else
         i++;
+    qDebug() << "scanNextCal 2";
         return false;
 }
 
 bool Scanner::scanNextSH()
 {
+    // Check if the camera is still connected before attempting to capture
+    if(!capture.isConnected()) {
+        qDebug() << "Camera is not connected.";
+        return false; 
+    }
+
     qDebug() << lPtr << mPtr;
     int error = capture.CaptureCamera(lPtr, mPtr);
     if(error != ERROR_OK){
         qDebug() << "Camera capturing failed!";
     }
-    // Additional check for the specific condition to disconnect the camera
-    if(lPtr == 3 && mPtr == 3){
-        capture.CleanUp();
-        qDebug() << "Camera disconnected successfully.";
-    }
+    
     if(-lPtr == l && mPtr == l){
-        
+        capture.CleanUp();
         qDebug() << -lPtr << "and" << mPtr;
         return true;
     }

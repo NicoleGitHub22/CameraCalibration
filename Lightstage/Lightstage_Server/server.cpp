@@ -82,11 +82,13 @@ void Server::onDisconnect(){
 
 void Server::onCalibrate()
 {
+    qDebug() << "onCalibrate 1";
     int error = scanner.setUpCal();
     if(error == ERROR_OK){
         emit simpleStateUpdate("Taking images...", false);
     }
     sendToAllClients(QString("calibrate"));
+    qDebug() << "onCalibrate 2";
 }
 
 void Server::onScan(int maxLevelOfDetail)
@@ -99,7 +101,11 @@ void Server::onScan(int maxLevelOfDetail)
 }
 
 void Server::calibrate(){
+    qDebug() << "calibrate 1";
     bool finishedAllPhotos = scanner.scanNextCal();
+
+    emit scanProgress(scanner.getProgess());
+
     if(finishedAllPhotos){
         scanner.cleanUp();
         emit calibrated();
@@ -107,6 +113,7 @@ void Server::calibrate(){
     else{
         showCurrentCalibrationImage(scanner.getCurrentI());
     }
+    qDebug() << "calibrate 2";
 }
 
 void Server::scan(){
@@ -132,8 +139,10 @@ void Server::showCurrentSH(int l, int m)
 
 void Server::showCurrentCalibrationImage(int i)
 {
+    qDebug() << "showCurrentCalibrationImage 1";
     QString cal_file = "cal:cal-" + QString::number(i);
     sendToAllClients(cal_file);
+    qDebug() << "showCurrentCalibrationImage 2";
 }
 
 void Server::onClientDelayChanged(int delay, int clientID)
