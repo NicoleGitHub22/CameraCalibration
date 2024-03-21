@@ -132,15 +132,16 @@ void Server::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 2: _t->calibrated(); break;
         case 3: _t->scanned(); break;
         case 4: _t->scanProgress((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 5: _t->scanFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->calFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->simpleStateUpdate((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 8: _t->onCalibrate(); break;
-        case 9: _t->onScan((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 10: _t->onClientDelayChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 11: _t->onNewConnection(); break;
-        case 12: _t->onReadyRead(); break;
-        case 13: _t->onDisconnect(); break;
+        case 5: _t->progress((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->scanFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->calFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->simpleStateUpdate((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 9: _t->onCalibrate(); break;
+        case 10: _t->onScan((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 11: _t->onClientDelayChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 12: _t->onNewConnection(); break;
+        case 13: _t->onReadyRead(); break;
+        case 14: _t->onDisconnect(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

@@ -113,6 +113,7 @@ int CameraCapture::CaptureCamera(int l, int m){
         return -1;
     }
     return 0;
+    qDebug() << "CaptureCamera 2";
 }
 
 int CameraCapture::CaptureCameraCal(int i, int j){
@@ -226,6 +227,7 @@ int CameraCapture::SetUpCamera(PGRGuid guid)
         return -1;
     }
     return 0;
+    qDebug() << "SetUpCamera 2";
 }
 
 int CameraCapture::CleanUp(){
@@ -241,10 +243,12 @@ int CameraCapture::CleanUp(){
         return -1;
     }
     return 0;
+    qDebug() << "CleanUp 2";
 }
 
 int CameraCapture::printInfo()
 {
+    qDebug() << "printInfo 1";
     PrintBuildInfo();
 
     Error error;
@@ -320,4 +324,5 @@ int CameraCapture::SetUp()
         SetUpCamera(guid);
     }
     return 0;
+    qDebug() << "SetUp 2";
 }

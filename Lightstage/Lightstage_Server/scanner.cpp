@@ -20,7 +20,9 @@ Scanner::Scanner()
 
 int Scanner::setUp(int maxLevelOfDetail)
 {
+    qDebug() << "setUp 1";
     SphericalHarmonics::createGraceCathedralSphericalHarmonics();
+    
     //check for all needed files
     for(int l = 0; l <= maxLevelOfDetail; l++){
         for(int m = -l; m <= l; m++){
@@ -47,6 +49,7 @@ int Scanner::setUp(int maxLevelOfDetail)
     lPtr = 0;
     mPtr = 0;
     return 0;
+    qDebug() << "setUp 2";
 }
 
 int Scanner::setUpCal()
@@ -84,7 +87,9 @@ int Scanner::setUpCal()
 
 int Scanner::cleanUp()
 {
+    qDebug() << "cleanUp 1";
     capture.CleanUp();
+    qDebug() << "cleanUp 2";
 }
 
 bool Scanner::scanNextCal()
@@ -114,6 +119,7 @@ bool Scanner::scanNextCal()
 
 bool Scanner::scanNextSH()
 {
+    qDebug() << "scanNextSH 1";
     qDebug() << lPtr << mPtr;
     int error = capture.CaptureCamera(lPtr, mPtr);
     if(error != ERROR_OK){
@@ -143,18 +149,21 @@ bool Scanner::scanNextSH()
     else mPtr++;
 
     return false;
+    qDebug() << "scanNextSH 2";
 }
 
 int Scanner::getProgess()
 {
+    qDebug() << "getProgess 1";
     int jobs = 2 * l + 1;
     return ((float)jobs / (float)(mPtr + (2 * (lPtr-1) + 1))) * 100;
+    qDebug() << "getProgess 2";
 }
 
-int Scanner::getCurrentL(){    return lPtr;    }
+int Scanner::getCurrentL(){    return lPtr;    qDebug() << "getCurrentL 1";}
 
-int Scanner::getCurrentI(){    return iPtr;    }
+int Scanner::getCurrentI(){    return iPtr;    qDebug() << "getCurrentI 1";}
 
-int Scanner::getCurrentJ(){    return jPtr;    }
+int Scanner::getCurrentJ(){    return jPtr;    qDebug() << "getCurrentJ 1";}
 
-int Scanner::getCurrentM(){    return mPtr;    }
+int Scanner::getCurrentM(){    return mPtr;    qDebug() << "getCurrentM 1";}

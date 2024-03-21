@@ -229,15 +229,17 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 
 // SIGNAL 0
 void MainWindow::calibrate()
-{
+{   qDebug() << "calibrate 1";
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+    qDebug() << "calibrate 2";
 }
 
 // SIGNAL 1
 void MainWindow::scan(int _t1)
-{
+{   qDebug() << "scan 1";
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    qDebug() << "scan 2";
 }
 
 // SIGNAL 3

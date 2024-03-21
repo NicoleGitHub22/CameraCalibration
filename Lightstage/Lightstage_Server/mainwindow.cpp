@@ -44,21 +44,27 @@ void MainWindow::on_scanBtn_clicked()
 
 void MainWindow::on_delayClient0spinBox_editingFinished()
 {
+    qDebug() << "delayClient0spinBox_editingFinished 1";
     int delay = ui->delayClient0spinBox->value();
     int clientID = 0;
     setClientDelay(delay, clientID);
+    qDebug() << "delayClient0spinBox_editingFinished 2";
 }
 
 void MainWindow::on_delayClient1spinBox_editingFinished()
 {
+    qDebug() << "delayClient1spinBox_editingFinished 1";
     int delay = ui->delayClient1spinBox->value();
     int clientID = 1;
     setClientDelay(delay, clientID);
+    qDebug() << "delayClient1spinBox_editingFinished 2";
 }
 
 void MainWindow::onSimpleStateUpdate(QString state, bool error)
 {
+    qDebug() << "onSimpleStateUpdate 1";
     setMainStatus(state, error);
+    qDebug() << "onSimpleStateUpdate 2";
 }
 
 void MainWindow::onCalibrated()
@@ -103,15 +109,19 @@ void MainWindow::onNewConnection(int clientID)
 
 void MainWindow::onDisconnect(int clientID)
 {
+    qDebug() << "onDisconnect 1";
     if(clientID == 0)
         ui->client1ConnectedCB->setChecked(false);
     else if(clientID == 1)
         ui->client2ConnectedCB->setChecked(false);
+    qDebug() << "onDisconnect 2";
 }
 
 void MainWindow::onScanProgress(int progress)
 {
+    qDebug() << "onScanProgress 1";
     ui->scan_progressBar->setValue(progress);
+    qDebug() << "onScanProgress 2";
 }
 
 void MainWindow::onCalProgress(int progress)

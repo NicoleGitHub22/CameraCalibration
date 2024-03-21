@@ -35,6 +35,7 @@ signals:
     void calibrated();
     void scanned();
     void scanProgress(int progress);
+    void progress(int progress);
     void scanFailed(QString errorMsg);
     void calFailed(QString errorMsgCal);
     void simpleStateUpdate(QString state, bool error);

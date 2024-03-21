@@ -110,7 +110,7 @@ void Server::calibrate(){
     qDebug() << "calibrate 1";
     bool finishedAllPhotos = scanner.scanNextCal();
 
-    emit scanProgress(scanner.getProgess());
+    emit progress(scanner.getProgess());
 
     if(finishedAllPhotos){
         scanner.cleanUp();
@@ -166,6 +166,7 @@ QString Server::getClientKey(QTcpSocket *client){
 
 void Server::sendToClient(int clientID, QString message)
 {
+    qDebug() << "sendToClient 1";
     QByteArray ba = message.toUtf8();
     for(auto &client : qAsConst(clients)){
         if(client->ID == clientID){
@@ -174,14 +175,17 @@ void Server::sendToClient(int clientID, QString message)
             break;
         }
     }
+    qDebug() << "sendToClient 2";
 }
 
 void Server::sendToAllClients(QString message)
 {
+    qDebug() << "sendToAllClients 1";
     QByteArray ba = message.toUtf8();
     for(auto &client : qAsConst(clients)){
         client->socket->write(ba);
         client->socket->flush();
     }
+    qDebug() << "sendToAllClients 2";
 }
 
