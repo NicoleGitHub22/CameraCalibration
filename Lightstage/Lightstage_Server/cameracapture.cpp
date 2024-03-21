@@ -115,7 +115,7 @@ int CameraCapture::CaptureCamera(int l, int m){
     return 0;
 }
 
-int CameraCapture::CaptureCameraCal(int i){
+int CameraCapture::CaptureCameraCal(int i, int j){
 
     qDebug() << "CaptureCameraCal 1";
     Error error;

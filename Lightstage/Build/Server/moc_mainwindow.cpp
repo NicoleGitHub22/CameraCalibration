@@ -141,25 +141,24 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->calibrate((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 1: _t->calibrate(); break;
-        case 2: _t->scan((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 3: _t->scan(); break;
-        case 4: _t->setClientDelay((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 5: _t->on_scanBtn_clicked(); break;
-        case 6: _t->on_calBtn_clicked(); break;
-        case 7: _t->on_delayClient0spinBox_editingFinished(); break;
-        case 8: _t->on_delayClient1spinBox_editingFinished(); break;
-        case 9: _t->on_stop_button_clicked(); break;
-        case 10: _t->onSimpleStateUpdate((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 11: _t->onCalibrated(); break;
-        case 12: _t->onScanned(); break;
-        case 13: _t->onCalibrationFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 14: _t->onScanFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 15: _t->onNewConnection((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 16: _t->onDisconnect((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 17: _t->onScanProgress((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 18: _t->onCalProgress((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 0: _t->calibrate(); break;
+        case 1: _t->scan((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->scan(); break;
+        case 3: _t->setClientDelay((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 4: _t->on_scanBtn_clicked(); break;
+        case 5: _t->on_calBtn_clicked(); break;
+        case 6: _t->on_delayClient0spinBox_editingFinished(); break;
+        case 7: _t->on_delayClient1spinBox_editingFinished(); break;
+        case 8: _t->on_stop_button_clicked(); break;
+        case 9: _t->onSimpleStateUpdate((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 10: _t->onCalibrated(); break;
+        case 11: _t->onScanned(); break;
+        case 12: _t->onCalibrationFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 13: _t->onScanFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 14: _t->onNewConnection((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 15: _t->onDisconnect((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->onScanProgress((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 17: _t->onCalProgress((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -234,14 +233,14 @@ void MainWindow::calibrate()
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 
-// SIGNAL 2
+// SIGNAL 1
 void MainWindow::scan(int _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
-// SIGNAL 4
+// SIGNAL 3
 void MainWindow::setClientDelay(int _t1, int _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };

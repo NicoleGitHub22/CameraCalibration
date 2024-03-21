@@ -91,7 +91,7 @@ bool Scanner::scanNextCal()
 {
     qDebug() << "scanNextCal 1";
 
-    int error = capture.CaptureCameraCal(i);
+    int error = capture.CaptureCameraCal(iPtr, jPtr);
     if(error != ERROR_OK){
         qDebug() << "Camera capturing failed!";
     }
@@ -100,9 +100,14 @@ bool Scanner::scanNextCal()
         qDebug() << "Camera disconnected successfully.";
         return true;
     }
+    if(iPtr < 8){
+        iPtr++;
+    }
+    if(iPtr = 8){
+        jPtr++;
+        iPtr = 0;
+    }
     else
-        i++;
-        j++;
     qDebug() << "scanNextCal 2";
         return false;
 }
