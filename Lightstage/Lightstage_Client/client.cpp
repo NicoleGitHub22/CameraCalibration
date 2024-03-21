@@ -24,6 +24,7 @@ Client::Client(QObject *parent, int screenShift, std::string clientID) : QObject
     connectToServer("localhost", 50100);
 
     imagePath = "../SphericalHarmonics/";
+    imagePathCal = "../../calibration/Camera_calibration/Calibration_Images/";
 
     /* IMPORTANT: make sure the monitors are oriented like this in the nvidia x server settings:
      *
@@ -41,6 +42,11 @@ Client::Client(QObject *parent, int screenShift, std::string clientID) : QObject
     scanBuffer[1].load(imagePath + "GraceCathedralIlluminationPattern-" + QString::number(2 + 3*std::stoi(id)) + ".png");
     scanBuffer[2].load(imagePath + "GraceCathedralIlluminationPattern-" + QString::number(3 + 3*std::stoi(id)) + ".png");
     showPixmaps(scanBuffer);
+
+    scanBufferCal[0].load(imagePathCal + "CAL-" + QString::number(1 + 3*std::stoi(id)) + ".png");
+    scanBufferCal[1].load(imagePathCal + "CAL-" + QString::number(2 + 3*std::stoi(id)) + ".png");
+    scanBufferCal[2].load(imagePathCal + "CAL-" + QString::number(3 + 3*std::stoi(id)) + ".png");
+    showPixmaps(scanBufferCal);
 
     standby.load(imagePath + "standby.jpg");
 }
@@ -63,11 +69,7 @@ void Client::connectToServer(const QString &hostName, const qint16 &port)
 int Client::calibrate()
 {
     qDebug() << "calibrate 1";
-    QString calibrationImagePath = "../../calibration/Camera_calibration/Calibration_Images/";
-    scanBuffer[0].load(calibrationImagePath + "CalibrationImage-" + QString::number(1 + 3*std::stoi(id)) + ".png");
-    scanBuffer[1].load(calibrationImagePath + "CalibrationImage-" + QString::number(2 + 3*std::stoi(id)) + ".png");
-    scanBuffer[2].load(calibrationImagePath + "CalibrationImage-" + QString::number(3 + 3*std::stoi(id)) + ".png");
-    showPixmaps(scanBuffer);
+    showPixmaps(scanBufferCal);
     usleep(delay*3000);
     sendToServer("/s:calibrated");
     qDebug() << "/s:calibrated";
