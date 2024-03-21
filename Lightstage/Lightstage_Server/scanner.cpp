@@ -57,11 +57,11 @@ int Scanner::setUpCal()
         qDebug() << "Capture setup failed!";
     }
     
-    for(int j = 1; j<=3; j++){
-       for(int i = 0; i<=8; i++){
+    for(int i = 0; i <= 8; i++){
+       for(int j = 1; j <= 6; j++){
         struct stat buffer;
-                std::string file = "../../calibration/Camera_calibration/Calibration_Images/CAL-"+ std::to_string(i) + "-" + std::to_string(j)+ ".png";
-                bool fileReady = stat(file.c_str(), &buffer) == 0;
+            std::string file = "../../calibration/Camera_calibration/Calibration_Images/CAL-"+ std::to_string(i) + "-" + std::to_string(j)+ ".png";
+            bool fileReady = stat(file.c_str(), &buffer) == 0;
         }
      }
             // qDebug()<< missingFile;
@@ -75,6 +75,9 @@ int Scanner::setUpCal()
     // } else {
     //     qDebug() << "Capture started successfully for calibration.";
     // }
+
+    iPtr = 0;
+    jPtr = 0;
     return 0;
     qDebug() << "setUpCal 2";
 }
@@ -92,13 +95,14 @@ bool Scanner::scanNextCal()
     if(error != ERROR_OK){
         qDebug() << "Camera capturing failed!";
     }
-    if(i == 9){
+    if(iPtr == 8 && jPtr == 6){
         capture.CleanUp();
         qDebug() << "Camera disconnected successfully.";
         return true;
     }
     else
         i++;
+        j++;
     qDebug() << "scanNextCal 2";
         return false;
 }
@@ -144,6 +148,8 @@ int Scanner::getProgess()
 
 int Scanner::getCurrentL(){    return lPtr;    }
 
-int Scanner::getCurrentI(){    return i;    }
+int Scanner::getCurrentI(){    return iPtr;    }
+
+int Scanner::getCurrentJ(){    return jPtr;    }
 
 int Scanner::getCurrentM(){    return mPtr;    }

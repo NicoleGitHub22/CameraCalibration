@@ -89,6 +89,7 @@ void Server::onCalibrate()
     int error = scanner.setUpCal();
     if(error == ERROR_OK){
         emit simpleStateUpdate("Taking images...", false);
+        showCurrentCalibrationImage(0,0);
     }
     sendToAllClients(QString("calibrate"));
     qDebug() << "onCalibrate 2";
@@ -116,7 +117,7 @@ void Server::calibrate(){
         emit calibrated();
     }
     else{
-        showCurrentCalibrationImage(scanner.getCurrentI());
+        showCurrentCalibrationImage(scanner.getCurrentI(), scanner.getCurrentJ());
     }
     qDebug() << "calibrate 2";
 }
@@ -146,10 +147,10 @@ void Server::showCurrentSH(int l, int m)
     qDebug() << "showCurrentSH 2";
 }
 
-void Server::showCurrentCalibrationImage(int i)
+void Server::showCurrentCalibrationImage(int i, int j)
 {
     qDebug() << "showCurrentCalibrationImage 1";
-    QString cal_file = "cal:cal-" + QString::number(i);
+    QString cal_file = "cal:CAL-" + QString::number(i) + "-" + QString::number(j);
     sendToAllClients(cal_file);
     qDebug() << "showCurrentCalibrationImage 2";
 }

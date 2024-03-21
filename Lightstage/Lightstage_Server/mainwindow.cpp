@@ -130,7 +130,7 @@ void MainWindow::setMainStatus(QString message, bool warning)
         ui->statusLbl->setStyleSheet("QLabel { color : black; }");
 
     ui->statusLbl->setText("Status: " + message);
-    qDebug() << "setMainStatus 2";a
+    qDebug() << "setMainStatus 2";
 }
 
 void MainWindow::on_stop_button_clicked()
