@@ -8,8 +8,8 @@ import glob
 import os
 
 # inner Corners count x
-innerCornerCountX = 5
-innerCornerCountY = 3
+innerCornerCountX = 6
+innerCornerCountY = 4
  
 # termination criteria
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
@@ -73,12 +73,6 @@ if len(objpoints) > 0 and len(imgpoints) > 0:
         print("Calibration was successful.")
         print(f"Calibration matrix: \n{mtx}")
         print(f"Distortion coefficients: {dist}")
-
-        # Write the distortion coefficients to a file
-        with open("distortion.txt", "w") as file:
-            for coeff in dist.ravel():
-                file.write(f"{coeff}\n")
-                print(f"Wrote distortion coefficients to file.")
 
         # Convert rotation vectors to rotation matrices using Rodrigues
         rotation_matrices = []

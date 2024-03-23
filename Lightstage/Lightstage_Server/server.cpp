@@ -6,6 +6,7 @@
 #include "server.h"
 #include <string>
 #include "scanner.h"
+#include <cstdlib>
 
 Server::Server(QObject *parent) : QObject(parent)
 {
@@ -63,7 +64,8 @@ void Server::onReadyRead(){
         if(infoText == "scanned"){
             scan();
         }
-        else if(infoText == "calibrated")   emit calibrated();
+        else if(infoText == "calibrated") 
+            calibrate();
     }
     else{
         qDebug() << "Message from a client uses an unknown prefix. Please contact your nearest IT expert to fix this issue.";
@@ -118,6 +120,7 @@ void Server::calibrate(){
     }
     else{
         showCurrentCalibrationImage(scanner.getCurrentI(), scanner.getCurrentJ());
+        qDebug() << scanner.getCurrentI() << "+" << scanner.getCurrentJ();
     }
     qDebug() << "calibrate 2";
 }
@@ -136,6 +139,8 @@ void Server::scan(){
     }
     else
         showCurrentSH(scanner.getCurrentL(), scanner.getCurrentM());
+    
+    undistortImages();
     qDebug() << "scan 2";
 }
 
@@ -189,3 +194,8 @@ void Server::sendToAllClients(QString message)
     qDebug() << "sendToAllClients 2";
 }
 
+// undistort the resulting images
+int undistortImages() {
+    system("python3 ../calibration/Camera_calibration/undistort_images.py");
+    return 0;
+}
