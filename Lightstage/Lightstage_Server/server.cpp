@@ -73,6 +73,12 @@ void Server::onReadyRead(){
     }
 }
 
+// undistort the resulting images
+int undistortImages() {
+    system("python3 ../calibration/Camera_calibration/undistort_images.py");
+    return 0;
+}
+
 void Server::onDisconnect(){
     qDebug() << "onDisconnect 1";
     const auto client = qobject_cast<QTcpSocket*>(sender());
@@ -192,10 +198,4 @@ void Server::sendToAllClients(QString message)
         client->socket->flush();
     }
     qDebug() << "sendToAllClients 2";
-}
-
-// undistort the resulting images
-int undistortImages() {
-    system("python3 ../calibration/Camera_calibration/undistort_images.py");
-    return 0;
 }

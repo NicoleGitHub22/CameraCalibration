@@ -43,10 +43,10 @@ Client::Client(QObject *parent, int screenShift, std::string clientID) : QObject
     scanBuffer[2].load(imagePath + "GraceCathedralIlluminationPattern-" + QString::number(3 + 3*std::stoi(id)) + ".png");
     showPixmaps(scanBuffer);
 
-    scanBufferCal[0].load(imagePathCal + "CAL-" + QString::number(1 + 3*std::stoi(id)) + ".png");
-    scanBufferCal[1].load(imagePathCal + "CAL-" + QString::number(2 + 3*std::stoi(id)) + ".png");
-    scanBufferCal[2].load(imagePathCal + "CAL-" + QString::number(3 + 3*std::stoi(id)) + ".png");
-    showPixmaps(scanBufferCal);
+    // scanBufferCal[0].load(imagePathCal + "CAL-" + QString::number(1 + 3*std::stoi(id)) + ".png");
+    // scanBufferCal[1].load(imagePathCal + "CAL-" + QString::number(2 + 3*std::stoi(id)) + ".png");
+    // scanBufferCal[2].load(imagePathCal + "CAL-" + QString::number(3 + 3*std::stoi(id)) + ".png");
+    // showPixmaps(scanBufferCal);
 
     standby.load(imagePath + "standby.jpg");
 }

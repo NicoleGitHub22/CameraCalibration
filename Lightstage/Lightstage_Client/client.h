@@ -18,11 +18,12 @@ public:
 private:
     LightstageWindow lightstageWindows[3];
     QString imagePath;
-    QString calibrationImagePath;
+    QString imagePathCal;
     QTcpSocket socket;
     State state;
     std::string id;
     QPixmap scanBuffer[3]; //not optimal. uses nearly twice as much storage as needed. but it works. Could be solved using a list
+    QPixmap scanBufferCal[3]; //not optimal. uses nearly twice as much storage as needed. but it works. Could be solved using a list
     QPixmap standby;
     int delay;
     void sendToServer(QString message);
