@@ -63,7 +63,7 @@ int Scanner::setUpCal()
     for(int i = 0; i <= 8; i++){
        for(int j = 1; j <= 6; j++){
         struct stat buffer;
-            std::string file = "../../calibration/Camera_calibration/Calibration_Images/CAL-"+ std::to_string(i) + "-" + std::to_string(j)+ ".png";
+            std::string file = "../../calibration/Camera_calibration/Images/CAL-"+ std::to_string(i) + "-" + std::to_string(j)+ ".png";
             bool fileReady = stat(file.c_str(), &buffer) == 0;
         }
      }

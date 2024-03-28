@@ -24,7 +24,7 @@ Client::Client(QObject *parent, int screenShift, std::string clientID) : QObject
     connectToServer("localhost", 50100);
 
     imagePath = "../SphericalHarmonics/";
-    imagePathCal = "../../calibration/Camera_calibration/Calibration_Images/";
+    imagePathCal = "../../calibration/Camera_calibration/Pattern_Images/";
 
     /* IMPORTANT: make sure the monitors are oriented like this in the nvidia x server settings:
      *
@@ -142,6 +142,10 @@ void Client::onReadyRead()
         std::string file = message.substr(message.find(delimiter) + 1, message.length());
         loadImagesIntoBuffer(QString::fromUtf8(file.c_str()));
         calibrate();
+    }
+    else if(prefix == "calibrated"){
+        state = IDLE;
+        showPixmap(standby);
     }
     else if(prefix == "delay"){
         delay = std::stoi(message.substr(message.find(delimiter) + 1, message.length()));

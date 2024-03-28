@@ -24,12 +24,12 @@ objpoints = [] # 3d point in real world space
 imgpoints = [] # 2d points in image plane.
 
 # Directory for saving the images with drawn corners
-results_dir = 'Results/'
+results_dir = 'Calibration_Results/'
 if not os.path.exists(results_dir):
     os.makedirs(results_dir)
  
 # Load images
-images = glob.glob('*.jpg')
+images = glob.glob('Calibration_Images/*.jpeg')
 
 # Process each image
 for fname in images:
@@ -72,50 +72,13 @@ if len(objpoints) > 0 and len(imgpoints) > 0:
     # Check if calibration was successful
     if ret:  
         print("Calibration was successful.")
-        print(f"Calibration matrix: \n{mtx}")
-        print(f"Distortion coefficients: {dist}")
-
+        # Save the camera matrix and distortion coefficients to a file
+        np.savez('calibration_data.npz', mtx=mtx, dist=dist)
+        print("Saved calibration data to 'calibration_data.npz'")
         
-        # Convert rotation vectors to rotation matrices using Rodrigues and invert them
-        rotation_matrices = []
-        rotation_inverses = []
-        for rvec in rvecs:
-            rotation_matrix, _ = cv.Rodrigues(rvec)
-            rotation_inverse = np.transpose(rotation_matrix)
-            rotation_inverses.append(rotation_inverse)
-            rotation_matrices.append(rotation_matrix)
-        print(f"Rotation matrices: {rotation_matrices}")
-        print(f"Translation vectors: {tvecs}")
-
-        tvec_inverses = [-rotation_inverses[i] @ tvecs[i] for i in range(len(tvecs))]
-        print(f"Inverse translation vectors: {tvec_inverses}")
 else:
     print("No valid image points found for calibration.")
 
-# Ensure the rotation_matrices list is not empty before dividing it into chunks
-if rotation_matrices:
-    rotation_chunks = [rotation_matrices[x:x+3] for x in range(0, len(rotation_matrices), 3)]
-    tvec_chunks = [tvecs[x:x+3] for x in range(0, len(tvecs), 3)]
 
-    for i, (rotation_chunk, tvec_chunk) in enumerate(zip(rotation_chunks, tvec_chunks), start=1):
-        # Save rotation matrices
-        rotation_filename = f"../Calculations/Matrices_Monitors/matrices_monitor{i}.txt"
-        with open(rotation_filename, 'w') as file:
-            for matrix in rotation_chunk:
-                np.savetxt(file, matrix, fmt="%s")
-                file.write("\n")  # Add a newline to separate matrices
-        print(f"Saved rotation matrices to {rotation_filename}")
-
-        # Save translation vectors in a separate file
-        translation_filename = f"../Calculations/Translation_Results/translation_result{i}.txt"
-        with open(translation_filename, 'w') as file:
-            for tvec in tvec_chunk:
-                np.savetxt(file, tvec, fmt="%s")
-                file.write("\n\n")  # Add double newline to separate translation vectors
-        print(f"Saved translation vectors to {translation_filename}")
-else:
-    print("No rotation matrices or translation vectors to save.")
-
-print("Camera position in world coordinates:\n",tvec_inverses)
 
 cv.destroyAllWindows()
